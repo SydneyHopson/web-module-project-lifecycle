@@ -7,6 +7,14 @@ export default class App extends React.Component {
 
   state = {
     todos:[],
+    error: '',
+    todoNameInput: '',
+  }
+  InputChange = evt => {
+    const { value } = evt.target
+    this.setState({
+      ...this.state, 
+      todoNameInput: value});
   }
   fetchAllTodos = () => {
   axios.get(URL)
@@ -16,7 +24,7 @@ export default class App extends React.Component {
       todos:res.data.data});
    })
    .catch(err => {
-    debugger
+    this.setState({...this.state, error: err.response.data.message })
    })
   }
   componentDidMount () {
@@ -29,7 +37,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-      <div id='error'>Error: No Error Here</div>
+      <div id='error'>Error: {this.state.err}</div>
       <div id='todos'>
         <h2>Todos:</h2>
         {
@@ -41,7 +49,7 @@ export default class App extends React.Component {
         </div>
 
         <form id='todoForm'>
-          <input type='text' placeholder='Type todo'></input>
+          <input value={this.state.todoNameInput} onChange={this.InputChange} type='text' placeholder='Type todo'></input>
           <input type='submit'></input>
           <button>Clear Complete</button>
         </form>
