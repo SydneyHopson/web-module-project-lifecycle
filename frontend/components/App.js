@@ -78,10 +78,12 @@ onTodoFormSubmit = evt => {
         <h2>Todos:</h2>
         {
           this.state.todos.reduce((acc, td) => {
-            if (this.state.displayCompleted || !td.completed ) return acc.concat(<div onClick={this.toggleCompleted(td.id)} key={td.id}>{td.name}{td.completed ? " ✔️" : ""} </div>)
+            if (this.state.displayCompleted || !td.completed) return acc.concat(
+            <div onClick={this.toggleCompleted(td.id)} key={td.id}>{td.name}{td.completed ? " ✔️ " : ""} </div>
+            )
             return acc
           }, [])
-            // return <div onClick={this.toggleCompleted(td.id)} key={td.id}>{td.name}{td.completed ? " ✔️" : ""} </div>
+          
             
           
         }
@@ -92,7 +94,8 @@ onTodoFormSubmit = evt => {
           <input type='submit'></input>
          
         </form>
-        <button onClick={this.toggleDisplayCompleted} > {this.state.displayCompleted ? 'Hide' : 'Show' } Completed </button>
+        
+        <button onClick={this.toggleDisplayCompleted}>{this.state.displayCompleted ? 'Hide' : 'Show' } Completed </button>
       </div>
     )
   }
