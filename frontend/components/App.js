@@ -76,6 +76,7 @@ onTodoFormSubmit = evt => {
     return (
       <div>
       <div id='error'>Error: {this.state.err}</div>
+       
        <TodoList 
        todos={this.state.todos}
        displayCompleted={this.state.displayCompleted}
